@@ -2,7 +2,7 @@ import random
 import math
 
 def modulo(a, k, n): #nhan binh phuong co lap
-    if a % m == 0:
+    if a % n == 0:
         return 0
     b = 1
     A = a
