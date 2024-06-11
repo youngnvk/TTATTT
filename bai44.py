@@ -8,13 +8,13 @@ def gcd(a, b):
         B = R
     return A
 def nghichdao(a, p):
-    if gcd(a, p) != 1:
-        return None
+    if gcd(a, p) != 1: #dieu kien nghich dao
+        return False
     u = a 
     v = p
     x1 = 1
     x2 = 0
-    if u == 0:
+    if u == 0: #dieu kieu chia cho so 0
         return False
     while(u != 1):
         q = v // u
@@ -35,7 +35,7 @@ if __name__=='__main__':
     B = []
     for i in range(n):
         r = nghichdao(A[i], p)
-        if r is None:
+        if r == False:
             print(f'Không thể tìm nghịch đảo cho phần tử thứ {i}: {A[i]} với p = {p}')
             break
         B.append(r)
