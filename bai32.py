@@ -1,94 +1,65 @@
+import random
 import math
-def nto(n):
-    if n < 2:
+def is_prime(num):
+    if num < 2:
         return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
             return False
     return True
-def tinh_phi(n):
-    for i in range(101,500):
-        if nto(i):
-             for j in range(i, 500):
-                 if nto(j) and i * j == n:
-                    phi = (i - 1) * (j - 1)
-                    print(f"Đã tìm được p = {i} và q = {j} trong khoảng (100, 500)")
-                    return phi                
-    return None
-def gcd(a, b):
-    A = a
-    B = b
-    while(B > 0):
-        R = A % B
-        A = B
-        B = R
-    return A
-def tinh_e(k):
-    if k is None:
-        return None
-    e = 2
-    while(e < k):
-        if gcd(e, k) == 1:
-            return e
-        e += 1
-def nghichdao(a, p):
-    if a is None or p is None:
-        return None
-    u = a
-    v = p
-    x1 = 1
-    x2 = 0
-    while u != 1 and u != 0:
-        q = v // u
-        r = v - q * u
-        x = x2 - q * x1
-        v = u
-        u = r
-        x2 = x1
-        x1 = x
-    return x1 % p
+
+def generate_prime():
+    while True:
+        p = random.randint(101, 499)
+        if is_prime(p):
+            return p
+
+def compute_phi(p, q):
+    return (p - 1) * (q - 1)
+
+def compute_d(e, phi):
+    return modulo(e, -1, n)
 
 def bin(n):
-    arr = []
     cnt = 0
+    arr = []
     while(n != 0):
         r = n % 2
         arr.append(r)
-        cnt += 1
         n = n // 2
+        cnt += 1
     return cnt, arr
-
-def modul_power(a, k, n):
-    cnt, arr = bin(k)
+def modulo(a, k, n):
+    cnt, arr = bin(n)
     b = 1
     if k == 0:
-        return b
+        return 0
     A = a
     if arr[0] == 1:
-        b = a
-    for i in range(1, cnt):
-        A = (A * A) % n
+        b = a 
+    for i in range(cnt):
+        A = (a * A) % n
         if arr[i] == 1:
             b = (A * b) % n
     return b
-if __name__=='__main__':
-    n = int(input('Nhập số n: '))
-    SBD = int(input('Nhập số báo danh: '))
+def encrypt(m, e, n):
+    return modulo(m, e, n)
+
+def decrypt(c, d, n):
+    return modulo(c, d, n)
+
+if __name__ == '__main__':
+    p, q = generate_prime(), generate_prime()
+    n = p * q
+    phi = compute_phi(p, q)
+    e = random.randint(2, phi - 1)
+    d = compute_d(e, phi)
+
+    SBD = int(input('Nhap ma sinh vien : '))
     m = SBD + 123
-    k = tinh_phi(n)
-    if k is not None:
-        e = tinh_e(k) 
-        if e is not None:
-            d = nghichdao(e, k)
-            if d is not None:
-                c = modul_power(m, e, n)
-                print(f'Thông điệp SBD: {SBD} đã được mã hóa thành bản mã c: {c}')
-                #-Giải mã thông điệp, tính m = cd mod n 
-                m = modul_power(c, d, n)
-                print(f'Bản giải mã thông điệp là m : {m}')
-            else:
-                print('Không tính được nghịch đảo')
-        else:
-            print('Không tìm thấy e !') 
-    else:
-        print('Không tìm thấy cặp số nguyên tố p và q thỏa mãn')       
+
+    c = encrypt(m, e, n)
+    print(f'Encrypted : (c): {c}')
+
+    decrypted_m = decrypt(c, d, n)
+    print(f'Decrypted : (m): {decrypted_m}')
