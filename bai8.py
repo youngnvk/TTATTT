@@ -2,7 +2,7 @@
 # Viết chương trình tìm các số Т-prime nhỏ hơn hoặc bằng N với N cho trước nhập từ bàn phím.
 import math
 
-def Q_prime1(n, A):
+def T_prime1(n, A):
     cnt = 0
     sqrt_n = int(math.sqrt(n))
     for i in range(1, sqrt_n + 1):
@@ -18,5 +18,5 @@ if __name__ == '__main__':
     if n > 0:
         A = []
         for i in range(2, n + 1):
-            Q_prime1(i, A)
+            T_prime1(i, A)
         print(A)
