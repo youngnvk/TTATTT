@@ -10,29 +10,26 @@ def phantich(n):
     r = x
     return s, r
 
-def bin(n):
-    arr = []
-    cnt = 0
-    while(n != 0):
-        r = n % 2
-        arr.append(r)
-        cnt += 1
-        n //= 2  # Thay đổi n / 2 thành n // 2
-    return cnt, arr
+import random
 
-def nhanbinhphuongcolap(a, k, n):
-    cnt, arr = bin(k)
+def modulo(a, k, n): #nhan binh phuong co lap
     b = 1
-    if k == 0:
-        return 0
     A = a
-    if arr[0] == 1:
-        b = a 
-    for i in range(cnt):
+    while k != 0:
+        if k % 2 != 0:
+            b = (b * A) % n
         A = (A * A) % n
-        if arr[i] == 1:
-            b = (A * b) % n
+        k = k // 2
     return b
+
+def phantich(n):
+    x = n - 1
+    s = 0
+    while x % 2 == 0:
+        s += 1
+        x = x // 2
+    r = x
+    return s, r
 
 def miller(n, t):
     if n == 2 or n == 3:
@@ -42,11 +39,54 @@ def miller(n, t):
     s, r = phantich(n)
     for i in range(t):
         a = random.randint(2, n - 2)
-        y = nhanbinhphuongcolap(a, r, n)
+        y = modulo(a, r, n)
         if y != 1 and y != n - 1:
             j = 1
             while j <= s - 1 and y != n - 1:
-                y = nhanbinhphuongcolap(y, 2, n)
+                y = modulo(y, 2, n)
+                if y == 1:
+                    return False
+                j += 1
+            if y != n - 1:
+                return False
+    return True
+
+if __name__ == '__main__':
+    t = int(input('Nhập số lần lặp: '))
+    while True:
+        n = int(input('Nhập N: '))
+        if 0 < n < 1000:
+            break
+        else:
+            print('Mời bạn nhập lại!')
+
+    p = int(input('Nhập p: '))
+
+    ok = False
+    for a in range(n + 1):  # Thêm 1 để kiểm tra cả giá trị a = 0
+        a_value = a
+        k = modulo(a_value, p, n)
+        if miller(k, t) == True:
+            print(f"a = {a_value}, thỏa mãn {a_value} ^ {p} % {n} là số nguyên tố")
+            print('')
+            ok = True
+    if not ok:
+        print('Không có số nào thỏa mãn!')
+
+
+def miller(n, t):
+    if n == 2 or n == 3:
+        return True
+    if n <= 1 or n % 2 == 0:
+        return False
+    s, r = phantich(n)
+    for i in range(t):
+        a = random.randint(2, n - 2)
+        y = modulo(a, r, n)
+        if y != 1 and y != n - 1:
+            j = 1
+            while j <= s - 1 and y != n - 1:
+                y = modulo(y, 2, n)
                 if y == 1:
                     return False
                 j += 1
@@ -55,7 +95,7 @@ def miller(n, t):
     return True
 
 def distance(A):
-    min_distance = 10000000  # Đổi tên biến từ min thành min_distance
+    min_distance = 10000000  
     for i in range(len(A)):
         for j in range(i + 1, len(A)):
             k = abs(A[i] - A[j])

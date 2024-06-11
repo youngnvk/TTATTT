@@ -1,27 +1,15 @@
-import math
 import random
-def bin(n):
-    cnt = 0
-    arr = []
-    while(n != 0):
-        r = n % 2
-        arr.append(r)
-        n = n // 2
-        cnt += 1
-    return cnt, arr
-def modulo(a, k, n):
-    cnt, arr = bin(n)
+
+def modulo(a, k, n): #nhan binh phuong co lap
     b = 1
-    if k == 0:
-        return 0
     A = a
-    if arr[0] == 1:
-        b = a 
-    for i in range(cnt):
-        A = (a * A) % n
-        if arr[i] == 1:
-            b = (A * b) % n
+    while k != 0:
+        if k % 2 != 0:
+            b = (b * A) % n
+        A = (A * A) % n
+        k = k // 2
     return b
+
 def phantich(n):
     x = n - 1
     s = 0
@@ -30,46 +18,43 @@ def phantich(n):
         x = x // 2
     r = x
     return s, r
+
 def miller(n, t):
     if n == 2 or n == 3:
         return True
-    if n == 1 or n % 2 == 0:
+    if n <= 1 or n % 2 == 0:
         return False
-    s, r = phantich(n) #chuan bi s va r
+    s, r = phantich(n)
     for i in range(t):
         a = random.randint(2, n - 2)
         y = modulo(a, r, n)
         if y != 1 and y != n - 1:
             j = 1
             while j <= s - 1 and y != n - 1:
-                y = modulo(y, 2, 1)
+                y = modulo(y, 2, n)
                 if y == 1:
                     return False
                 j += 1
             if y != n - 1:
                 return False
     return True
-def random_prime(n, t):
+
+if __name__ == '__main__':
+    t = int(input('Nhập số lần lặp: '))
     while True:
-        a = random.randint(2, n - 2)
-        if miller(a, t):
-            return a
-if __name__=='__main__':
-    t = int(input('Nhap so lan lap: '))
-    while(True):
-        n = int(input('Nhap N: '))
+        n = int(input('Nhập N: '))
         if 0 < n < 1000:
             break
         else:
-            print('Moi ban nhap lai!')
-    p = random_prime(n, t)
+            print('Mời bạn nhập lại!')
+
+    p = int(input('Nhập p: '))
     ok = False
-    for a in range(n):
+    for a in range(n):  # Thêm 1 để kiểm tra cả giá trị a = 0
         k = modulo(a, p, n)
-        if miller(k, t):
-            print(f"a = {a}, thỏa mãn {a} ^ {p} % {n} = {k} là số nguyên tố")
+        if miller(k, t) == True:
+            print(f"a = {a}, thỏa mãn {a} ^ {p} % {n} là số nguyên tố")
             print('')
             ok = True
-    if not ok:
-        print('Khong co so nao thoa man! ~')  
-        
+    if ok == False:
+        print('Không có số nào thỏa mãn!')
