@@ -20,28 +20,17 @@ def compute_phi(p, q):
 def compute_d(e, phi):
     return modulo(e, -1, n)
 
-def bin(n):
-    cnt = 0
-    arr = []
-    while(n != 0):
-        r = n % 2
-        arr.append(r)
-        n = n // 2
-        cnt += 1
-    return cnt, arr
 def modulo(a, k, n):
-    cnt, arr = bin(n)
-    b = 1
-    if k == 0:
+    if a % m == 0:
         return 0
+    b = 1
     A = a
-    if arr[0] == 1:
-        b = a 
-    for i in range(cnt):
-        A = (a * A) % n
-        if arr[i] == 1:
+    while(k != 0):
+        if k % 2 == 1:
             b = (A * b) % n
-    return b
+        A = (A * A) % n
+        k = k // 2
+    return b    
 def encrypt(m, e, n):
     return modulo(m, e, n)
 

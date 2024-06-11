@@ -30,12 +30,12 @@ def work(ma, primes): #hàm lấy ra số gần nhất
             #> lần 2
             tmp = min(i, tmp) # Nếu khoảng cách bằng nhau, chọn số nhỏ hơn
     return tmp #trả về số cần tìm
-def modul_power(a, k, m): #hàm tính modulo
+def modulo(a, k, m): #hàm tính modulo
     if a % m == 0:
         return 0
     b = 1
     a = a % m
-    while(k > 0):
+    while(k != 0):
         if k  % 2 == 1:
             b = (b * a) % m
         k = k // 2
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     primes = eratosthenes_segment(2, 100000)
     k = work(ma, primes)
     #Từ số k tìm được tính a^k mod n (a = SBD)
-    result = modul_power(a, k, n)
+    result = modulo(a, k, n)
     print(result)
     
     
