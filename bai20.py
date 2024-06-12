@@ -1,5 +1,5 @@
 import math
-def gcd2(a, b):
+def gcd(a, b): #Hàm tính ước chung lớn nhất
     A = a
     B = b
     while B > 0:
@@ -8,16 +8,33 @@ def gcd2(a, b):
         B = R
     return A
 if __name__ == '__main__':
-    M = int(input('Nhập M (0 < M < 1000): '))
-    N = int(input('Nhập N (0 < N < 1000): '))
-    D = int(input('Nhập D (0 < D < 1000): '))
-    cnt = 0
+    while(True):
+        M = int(input('Nhập M (0 < M < 1000): '))
+        if 0 < M < 1000:
+            break
+        else:
+            print('Nhập lại M')
+    while(True):
+        N = int(input('Nhập N (0 < N < 1000): '))
+        if 0 < N < 1000:
+            break
+        else:
+            print('Nhập lại N')
+    while(True):
+        D = int(input('Nhập D (0 < D < 1000): '))
+        if 0 < D < 1000:
+            break
+        else:
+            print('Nhập lại D')
+    cnt = 1
     for i in range(M, N + 1):
         for j in range(i, N + 1):
-            if gcd2(i, j) == D:
-                cnt+= 1
-                print(f'({i}, {j})')
-                print ('')
-                print(cnt)
-    
+            if gcd(i, j) == D:
+                print(f'cặp số thứ {cnt} thỏa mãn là: ({i}, {j})')
+                cnt += 1
+    if cnt == 1:
+        print('Không có cặp nào thỏa mãn!')
+#M = 2
+# N = 50
+# D = 11    
     
