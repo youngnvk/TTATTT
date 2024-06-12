@@ -1,5 +1,4 @@
 import random
-
 def bin(k):
     cnt = 0
     arr = []
@@ -22,6 +21,40 @@ def modulo(a, k, n): #nhan binh phuong co lap
         if arr[i] == 1:
             b = (b * A) % n
     return b
+
+def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
+    arr2 = []
+    cnt = 0
+    while n != 0:
+        r = n % 2
+        arr2.append(r)
+        cnt += 1
+        n = n // 2
+    return cnt, arr2
+
+def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bình phương và nhân
+    cnt, arr2 = bin(k)
+    b = 1
+    if k == 0:
+        return 1  # 0^0 là 1 theo định nghĩa
+    A = a
+    if arr2[0] == 1:
+        b = a 
+    for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai
+        A = (A * A) % n
+        if arr2[i] == 1:
+            b = (A * b) % n
+    return b
+
+def phantich(n):  # Hàm phân tích số n-1 thành dạng 2^s * r
+    x = n - 1
+    s = 0
+    while x % 2 == 0:
+        s += 1
+        x //= 2
+    r = x
+    return s, r
+
 def phantich(n):
     x = n - 1
     s = 0
