@@ -7,27 +7,27 @@ def gcd(a, b):
         b = r
     return a
 
-def bin(n):
-    arr = []
+def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
+    arr2 = []
     cnt = 0
-    while(n != 0):
+    while n != 0:
         r = n % 2
-        arr.append(r)
+        arr2.append(r)
         cnt += 1
         n = n // 2
-    return cnt, arr
+    return cnt, arr2
 
-def binhphuongcolap(a, k, n):
-    cnt, arr = bin(k)
+def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bình phương và nhân
+    cnt, arr2 = bin(k)
     b = 1
     if k == 0:
-        return b
+        return 1  # 0^0 là 1 theo định nghĩa
     A = a
-    if arr[0] == 1:
-        b = a
-    for i in range(1, cnt):
+    if arr2[0] == 1:
+        b = a 
+    for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai
         A = (A * A) % n
-        if arr[i] == 1:
+        if arr2[i] == 1:
             b = (A * b) % n
     return b
 
@@ -46,7 +46,7 @@ def is_carmichael(n):
         return False
     for i in range(2, n):
         if gcd(n, i) == 1:
-            if binhphuongcolap(i, n - 1, n) != 1:
+            if modulo(i, n - 1, n) != 1:
                 return False
     return True
 

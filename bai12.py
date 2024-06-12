@@ -25,5 +25,5 @@ if __name__=='__main__':
             print(primes[i], primes[i + 1], primes[i + 2], primes[i + 3])
             found = True
     if not found:
-        print("Đéo tìm thấy!")
+        print("Không tìm thấy!")
     
