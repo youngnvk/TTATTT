@@ -1,17 +1,27 @@
 import random
 
-def modulo(a, k, n): #nhan binh phuong co lap
-    if a % n == 0:
-        return 0
-    b = 1
-    A = a
-    while k != 0:
-        if k % 2 != 0:
-            b = (b * A) % n
-        A = (A * A) % n
+def bin(k):
+    cnt = 0
+    arr = []
+    while(k != 0):
+        r = k % 2
+        arr.append(r)
+        cnt += 1
         k = k // 2
+    return cnt, arr
+def modulo(a, k, n): #nhan binh phuong co lap
+    cnt, arr = bin(k)
+    b = 1
+    if k == 0:
+        return 1
+    A = a 
+    if arr[0] == 1:
+        b = a 
+    for i in range(1, cnt):
+        A = (A * A) % n
+        if arr[i] == 1:
+            b = (b * A) % n
     return b
-
 def phantich(n):
     x = n - 1
     s = 0
@@ -40,7 +50,11 @@ def miller(n, t):
             if y != n - 1:
                 return False
     return True
-
+def random_search(n, t): #random 1 so nguyen to
+    while(True):
+        k = random.randint(2, n)
+        if miller(k, t):
+            return k
 if __name__ == '__main__':
     t = int(input('Nhập số lần lặp: '))
     while True:
@@ -50,12 +64,13 @@ if __name__ == '__main__':
         else:
             print('Mời bạn nhập lại!')
 
-    p = int(input('Nhập p: '))
+    p = random_search(n, t)
+    print('Số p lựa chọn là: ', p)
     ok = False
-    for a in range(n):  # Thêm 1 để kiểm tra cả giá trị a = 0
+    for a in range(n): 
         k = modulo(a, p, n)
         if miller(k, t) == True:
-            print(f"a = {a}, thỏa mãn {a} ^ {p} % {n} là số nguyên tố")
+            print(f"a = {a}, thỏa mãn ({a} ^ {p}) % {n} = {k} là số nguyên tố")
             print('')
             ok = True
     if ok == False:
