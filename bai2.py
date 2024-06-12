@@ -13,8 +13,11 @@ def find(N):
         if isprime(num):
             print(num)
 if __name__ == '__main__':
-    N = int(input('Nhập N từ bàn phím 2 <= N <= 10: '))
-    if N < 2 or N > 10:
-        print("Giá trị của N phải nằm trong khoảng từ 2 đến 10.")
-    else:
-        find(N)
+   while(True):
+        N = int(input('Nhập N từ bàn phím 2 <= N <= 10: '))
+        if 2 <= N <= 10:
+            print(f"các số nguyên tố có {N} chữ số là: ")
+            find(N)
+        else:
+            print("Giá trị của N phải nằm trong khoảng từ 2 đến 10.")
+            print('Mời nhập lại!')
