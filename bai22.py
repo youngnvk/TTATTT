@@ -1,48 +1,39 @@
-import random
+import math
 
-def bin(n):  # Convert to binary
-    arr = []
-    while n != 0:
-        arr.append(n % 2)
-        n = n // 2
-    return arr
+def eratosthenes(n):
+    primes = [1] * (n + 1)
+    primes[0] = primes[1] = 0
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if primes[i]:
+            for j in range(i * i, n + 1, i):
+                primes[j] = 0
+    return primes
 
-def nhanbinhphuongcolap(a, k, n):  # Modular exponentiation
-    arr = bin(k)
-    b = 1
-    A = a
-    if arr[0] == 1:
-        b = a
-    for i in range(1, len(arr)):
-        A = (A * A) % n
-        if arr[i] == 1:
-            b = (A * b) % n
-    return b
-
-def is_prime(n, t):  # Primality test
-    if n == 2 or n == 3:
-        return True
-    if n <= 1 or n % 2 == 0:
-        return False
-    for _ in range(t):
-        a = random.randint(2, n - 2)
-        if nhanbinhphuongcolap(a, n - 1, n) != 1:
-            return False
-    return True
-
-def F(n, t):
-    return n if is_prime(n, t) else 0
+def Fn(n, primes):
+    if primes[n] == 1:
+        return n
+    else:
+        return 0
 
 if __name__ == '__main__':
-    L = int(input('Nhập giá trị của L: '))
-    R = int(input('Nhập giá trị của R > L: '))
-    t = int(input('Nhập giá trị của t: '))
+    while True:
+        L = int(input('Nhập giá trị của L: '))
+        if L > 0:
+            break
+        else:
+            print('Nhập lại !')
+    while True:
+        R = int(input('Nhập giá trị của R: '))
+        if R > L:
+            break
+        else:
+            print('Nhập lại !')
 
-    primes = [F(i, t) for i in range(L, R + 1)]
+    primes = eratosthenes(10000)  # Đánh dấu các số nguyên tố < 10000
 
     result = 0
-    for i in range(len(primes)):
-        for j in range(i + 1, len(primes)):
-            result += primes[i] * primes[j]
+    for i in range(L, R):
+        for j in range(i + 1, R + 1):
+            result += Fn(i, primes) * Fn(j, primes)
 
     print(f'Kết quả: {result}')
