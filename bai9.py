@@ -1,4 +1,4 @@
-#âu 9. Viết chương trình đếm số số nguyên tố nhỏ hơn hoặc bằng N với N được nhập vào từ bàn phím.
+
 import math
 def eratosthenes(n, primes):
     primes[0] = primes[1] = 0
