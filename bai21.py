@@ -21,13 +21,21 @@ def checknto(n):
             return False
     return True
 if __name__ == '__main__':
-    A = int(input('Nhập A: '))
-    B = int(input('Nhập B: ')) 
+    while(True):
+        A = int(input('Nhập A: '))
+        if A > 0:
+            break
+        else:
+            print('Nhập lại !')
+    while(True):
+        B = int(input('Nhập A: '))
+        if B > A:
+            break
+        else:
+            print('Nhập lại !')
     cnt = 0
     for i in range(A, B + 1):
         primes = eratosthenes(i)
-        count_fake = count(primes)
-        if checknto(count_fake):
-            cnt += 1
-            print(f'số {i} là số siêu nguyên tố vì có số lượng số nto là {count_fake}')            
-    print(cnt)
+        dem = count(primes)
+        if checknto(dem):
+            print(f'số {i} là số siêu nguyên tố vì có số lượng số nguyên tố < {i} là {dem}')            
