@@ -36,4 +36,4 @@ if __name__ == '__main__':
         for j in range(i + 1, R + 1):
             result += Fn(i, primes) * Fn(j, primes)
 
-    print(f'Kết quả: {result}')
+    print(f'Kết quả là: {result}')
