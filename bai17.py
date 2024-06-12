@@ -10,13 +10,12 @@ if __name__=='__main__':
     A = int(input('Nhập A: '))
     B = int(input('Nhập B: '))
     C = int(input('Nhập C: '))
-    n = int(input('Nhap n: '))
-    i = 1    
-    while i <= n:
-        sum = A * i * i + B * i + C
+    x = 1    
+    while True:
+        sum = A * x * x + B * x + C
         if checknto(sum):
-            print(i)
+            print("Nghiệm x nhỏ nhất để tổng Ax^2 + Bx + C là số nguyên tố là:", x)
             break
-        i += 1
+        x += 1
     
     
