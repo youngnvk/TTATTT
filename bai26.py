@@ -1,6 +1,4 @@
-# Câu 26. Một số được gọi là số mạnh mẽ 
-# khi nó đồng thời vừa chia hết cho số nguyên tố và chia hết cho bình phương của số nguyên tố đó.
-# Tìm số mạnh mẽ nhỏ hơn số N cho trước (N < 10000).
+
 import math
 def eratosthenes(n):
     primes = [1] * (n + 1)
@@ -10,19 +8,20 @@ def eratosthenes(n):
             for j in range(i * i, n + 1, i):
                 primes[j] = 0
     return [i for i in range(2, n + 1) if primes[i]]
-def work(N):
+def check(N): #hàm kiểm tra theo yêu cầu bài toán
     primes = eratosthenes(N)
-    while(N != 10000):
-        for i in primes:
-            if N % i == 0 and N % (i * i) == 0:
-                return N
-        N += 1
-    return None
+    for i in primes:
+        if N % i == 0:
+            if N % (i * i) != 0:
+                return False
+    return True
 if __name__=='__main__':
-    N = 9561  # cho trước
-    khaideptrai = work(N)
-    if khaideptrai:
-        print(f'Đây là số mạnh mẽ hơn số {N} :', khaideptrai)
-    else:
-        print(f'Không tìm thấy số mạnh mẽ nhỏ hơn số {N}.')
-    
+    N = 20 #cho trước < 10000
+    cnt = 1
+    for i in range(2, N): #kiểm tra những số nhỏ hơn n
+        result = check(i)
+        if result:
+            print(f'Đây là số mạnh mẽ hơn số {N} thứ {cnt} : ', i)
+            cnt += 1
+    if cnt == 1:
+        print(f'Không có số nào mạnh hơn {N}')  
