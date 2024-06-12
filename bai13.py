@@ -34,6 +34,5 @@ if __name__ == '__main__':
             if is_prime(total) and is_prime(diff) and total <= n:
                 print(f"Cặp số thỏa mãn thứ {cnt} : {primes[i]}, {primes[j]}")
                 cnt += 1
-
     if cnt == 1:
         print("Không có cặp số nào thỏa mãn điều kiện.")

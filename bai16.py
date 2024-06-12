@@ -1,41 +1,45 @@
 import random
-def fermat(a, n):
-        if n == 2 or n == 3:
-            return True
-        if n <= 1 or n % 2 == 0:
+import math
+def checknto(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
             return False
-        if modulo(a, n-1, n) != 1: # modulo_power(a, n-1, n)
-            return False
-        return True
-def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
-    arr2 = []
-    cnt = 0
-    while n != 0:
-        r = n % 2
-        arr2.append(r)
-        cnt += 1
-        n = n // 2
-    return cnt, arr2
-
-def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bình phương và nhân
-    cnt, arr2 = bin(k)
-    b = 1
-    if k == 0:
-        return 1  # 0^0 là 1 theo định nghĩa
-    A = a
-    if arr2[0] == 1:
-        b = a 
-    for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai
-        A = (A * A) % n
-        if arr2[i] == 1:
-            b = (A * b) % n
-    return b
+    return True
+def random_array(n, l, r):
+    arr = [-1] * (n)
+    for i in range(n):
+        a = random.randint(l, r)
+        if a not in arr: #để cho các phần tử  trong mảng không giống nhau
+            arr[i] = random.randint(l, r)   
+    return arr     
 if __name__=='__main__':
-    n = int(input("Nhập giá trị của n: "))
-    array_random = [random.randint(1, 100) for i in range(n)]
-    print("Mảng random n phần tử là: ", array_random)
+    while(True):
+        n = int(input('Nhập giá trị(số lượng phần tử trong mảng) n > 0: '))
+        if n > 0:
+            break
+        else:
+            print('Nhập lại n')
+    while(True):
+        l = int(input('Nhập giá trị l của khoảng sinh : '))
+        if l > 0:
+            break
+        else:
+            print('Nhập lại l')
+    while(True):
+        r = int(input('Nhập giá trị r của khoảng sinh : '))
+        if r > l:
+            break
+        else:
+            print('Nhập lại r')
+    array_random = random_array(n, l, r)
+    print(f'Mảng sinh ngẫu nhiên {n} phần tử là : ', array_random)
     print("Các số nguyên tố trong mảng trên là : ")
-    for i in range(len(array_random)):
-        a = random.randint(2, n - 2)
-        if fermat(a, array_random[i]):
-                print(array_random[i], end=' ')
+    cnt = 1
+    for i in range(n):
+        if checknto(array_random[i]):
+                print(f'số nguyên tố thứ {cnt} là :', array_random[i])
+                cnt += 1
+    if cnt == 1:
+        print('Không có số nào !')

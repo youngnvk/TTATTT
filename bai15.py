@@ -1,6 +1,3 @@
-#Câu 15. #Viết chương trình Hai số nguyên tố sinh đôi là hai số nguyên tố 
-#hơn kém nhau 2 đơn vị.
-# Tìm hai số nguyên tố sinh đôi nhỏ hơn hoặc bằng N, với N được nhập vào từ bàn phím.
 import math
 def eratosthenes(n):
     primes = [1] * (n + 1)
@@ -11,10 +8,19 @@ def eratosthenes(n):
                 primes[j] = 0
     return [i for i in range(2, n + 1) if primes[i]]
 if __name__=='__main__':
-    n = int(input('Nhập giá trị n: '))
-    primes = eratosthenes(n)
+    while(True):
+        n = int(input('Nhập n > 0 : '))
+        if n > 0:
+            break
+        else:
+            print('Nhập lại!')
+    primes = eratosthenes(n) #gán mảng primes = mảng nguyên tố từ eratosthenes
+    cnt = 1
     for i in range(len(primes) - 1):
-        #7 11 13
-            if abs(primes[i + 1] - primes[i] == 2):
-                print(f'({primes[i]}, {primes[i + 1]})')
+        if (primes[i + 1] - primes[i] == 2): #vì hàm eratosthenes đã sắp xếp từ bé đến lớn
+                                            #nên ta chỉ cần tìm số đằng trước trừ đi số đằng sau là đủ.
+            print(f'cặp 2 số thỏa mãn thứ {cnt} là : ({primes[i]}, {primes[i + 1]})')
+            cnt += 1
+    if cnt == 1:
+        print('Không tìm thấy!')           
            
