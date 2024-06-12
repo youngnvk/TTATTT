@@ -2,11 +2,10 @@ import math
 def get_phan_so(maSinhVien): #hàm lấy phần số mã sinh viên
     limit = len(maSinhVien)
     ma = 0
-    tmp = limit - 1
+    masinhvien2.reversed()
     for i in range(limit):  
-        if maSinhVien[i].isdigit(): # kiểm tra là số
-            ma += 10 ** tmp  * int(maSinhVien[i])
-        tmp -= 1
+        if maSinhVien2[i].isdigit(): # kiểm tra là số
+            ma += 10 ** tmp  * int(maSinhVien2[i])
     return int(ma)
 def eratosthenes_segment(l, r): #eratosthenes tạo mảng nguyên tố
     limit = r - l + 1
