@@ -1,6 +1,5 @@
 import math
-
-def count1(N):
+def countuocnguyento(N):
     limit = int(math.sqrt(N)) + 1
     cnt = 0
     for i in range(2, limit):
@@ -11,7 +10,7 @@ def count1(N):
     if N != 1:
        cnt += 1
     return cnt
-def count2(N):
+def countuoc(N):
     limit = int(math.sqrt(N)) + 1
     cnt = 0
     for i in range(1, limit):
@@ -21,8 +20,13 @@ def count2(N):
                cnt += 1
     return cnt
 if __name__ == "__main__":
-    N = int(input("Nhập giá trị N: "))
-    k = count1(N)
-    s = count2(N)
-    print("Số ước nguyên tố của số N là : ", k)
-    print("Số ước của số N là : ", s)
+    while(True):
+        N = int(input('Nhập n: '))
+        if N > 0:
+            break
+        else:
+            print('Nhập lại!')
+    k = countuocnguyento(N)
+    s = countuoc(N)
+    print(f"Số ước nguyên tố của số {N} là : ", k)
+    print(f"Số ước của số {N} là : ", s)

@@ -8,8 +8,13 @@ def eratosthenes(n, primes):
                 primes[j] = 0
     return [i for i in range(2, n + 1) if primes[i]]
 if __name__== '__main__':
-    n =int(input("Nhập giá trị của N:"))
+    while(True):
+        n = int(input('Nhập n > 0: '))
+        if n > 0:
+            break
+        else:
+            print('Nhập lại !')
     primes = [1] * (n + 1)
-    print(len(eratosthenes(n, primes)))
+    print("Số lượng số nguyên tố là : ",len(eratosthenes(n, primes)))
     
     
