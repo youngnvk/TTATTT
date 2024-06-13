@@ -51,7 +51,12 @@ def is_carmichael(n):
     return True
 
 def main():
-    n = int(input("Enter n: "))
+    while(True):
+        n = int(input('Nhap N: '))
+        if 0 <= n <= 10000:
+            break
+        else:
+            print('Nhập lại')
     arr = []
     for i in range(2, n + 1):
         if is_carmichael(i):

@@ -1,5 +1,4 @@
 import math
-
 def checknto(n):
     if n < 2:
         return False
@@ -16,7 +15,7 @@ def bin(n):
         cnt += 1
         n = n / 2
     return cnt, arr
-def binhphuongcolap(a, k, n):
+def modulo(a, k, n):
     cnt, arr = bin(k)
     b = 1
     if k == 0:
@@ -33,7 +32,7 @@ if __name__ == '__main__':
     a = int(input('Nhap a: '))
     k = int(input('Nhap k: '))
     n = int(input('Nhap n: '))
-    test = binhphuongcolap(a, k, n)
+    test = modulo(a, k, n)
     if test:
         print('Nguyen to')
     else:

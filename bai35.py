@@ -16,7 +16,7 @@ def bin(n): #ham chuyen sang nhi phan
         cnt += 1
         n = n / 2
     return cnt, arr
-def nhanbinhphuongcolap(a, k, n): #hàm nhân bình phương có lặp
+def modulo(a, k, n): #hàm nhân bình phương có lặp
     cnt, arr = bin(n)
     b = 1
     if a % n == 0:
@@ -38,11 +38,11 @@ def miller(n, t):
     s, r = phantich(n)
     for i in range(t): #duyet so lan t
         a = random.randint(2, n - 2) #random
-        y = nhanbinhphuongcolap(a, r, n)
+        y = modulo(a, r, n)
         if y != 1 and y != n - 1:
             j = 1 #gan j = 1
             while j <= s - 1 and y != n - 1:
-                y = nhanbinhphuongcolap(y, 2, n)
+                y = modulo(y, 2, n)
                 if y == 1:
                     return False
                 j = j + 1

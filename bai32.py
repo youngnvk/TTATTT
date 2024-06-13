@@ -8,16 +8,16 @@ def is_prime(num):
             return False
     return True
 
-def generate_prime():
+def random_prime():
     while True:
         p = random.randint(101, 499)
         if is_prime(p):
             return p
 
-def compute_phi(p, q):
+def tinh_phi(p, q):
     return (p - 1) * (q - 1)
 
-def compute_d(e, phi):
+def tinh_d(e, phi):
     return modulo(e, -1, n)
 
 def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
@@ -42,16 +42,7 @@ def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bìn
         A = (A * A) % n
         if arr2[i] == 1:
             b = (A * b) % n
-    return b    if a % m == 0:
-        return 0
-    b = 1
-    A = a
-    while(k != 0):
-        if k % 2 == 1:
-            b = (A * b) % n
-        A = (A * A) % n
-        k = k // 2
-    return b    
+    return b      
 def encrypt(m, e, n):
     return modulo(m, e, n)
 
@@ -59,17 +50,17 @@ def decrypt(c, d, n):
     return modulo(c, d, n)
 
 if __name__ == '__main__':
-    p, q = generate_prime(), generate_prime()
+    p, q = random_prime(), random_prime()
     n = p * q
-    phi = compute_phi(p, q)
+    phi = tinh_phi(p, q)
     e = random.randint(2, phi - 1)
-    d = compute_d(e, phi)
+    d = tinh_d(e, phi)
 
     SBD = int(input('Nhap ma sinh vien : '))
     m = SBD + 123
 
     c = encrypt(m, e, n)
-    print(f'Encrypted : (c): {c}')
+    print(f'Ma hoa : (c): {c}')
 
     decrypted_m = decrypt(c, d, n)
-    print(f'Decrypted : (m): {decrypted_m}')
+    print(f'Giai ma : (m): {decrypted_m}')
