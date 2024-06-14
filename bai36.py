@@ -14,7 +14,7 @@ def boyer(P, T):
                 j = j - 1
         else:#không giống nên nhảy
             #tiền xử lý
-            i = i + m - min(j, 1 + check_last_P(T[i+1],P)) #cập nhật vị trí i
+            i = i + m - min(j, 1 + check_last_P(T[i],P)) #cập nhật vị trí i
             j = m - 1 #cập nhật lại j
     return False #không tìm thấy     
 def check_last_P(k, P): #hàm kiểm tra vị trí cuối cùng trong P

@@ -30,10 +30,19 @@ def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bìn
             b = (A * b) % n
     return b
 if __name__ == '__main__':
-    a = int(input('Nhap a: '))
-    k = int(input('Nhap k: '))
-    n = int(input('Nhap n: '))
-    test = binhphuongcolap(a, k, n)
+    while( 0 < a < 1000):
+        a = int(input('Nhap a: '))
+        if 0 < a < 1000:
+            break
+    while( 0 < k < 1000):
+        k = int(input('Nhap k: '))
+        if 0 < k < 1000:
+            break
+    while( 0 < n < 1000):
+        n = int(input('Nhap n: '))
+        if 0 < n < 1000:
+            break 
+    test = modulo(a, k, n)
     if test:
         print('Nguyen to')
     else:

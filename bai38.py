@@ -8,9 +8,11 @@ def gcd(a, b):
         B = R
     return A
 def nghichdao(a, p):
-    if a is None or p is None:
-        return None
+    if gcd(a, b) != 1:
+        return False
     u = a
+    if u == 0:
+        return False
     v = p
     x1 = 1
     x2 = 0

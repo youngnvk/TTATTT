@@ -28,9 +28,7 @@ if __name__ == '__main__':
             break
         else:
             print('Nhập lại !')
-
     primes = eratosthenes(10000)  # Để đánh dấu các số nguyên tố < 10000
-
     result = 0
     for i in range(L, R):
         for j in range(i + 1, R + 1):

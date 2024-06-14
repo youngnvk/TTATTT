@@ -28,8 +28,8 @@ def failure(k,P):
         if A[:i] == A[-i:] : # kiểm tra tiền tố = hậu tố
             x += 1
     return x        
-vanban1 = 'nguyen van khai'
-vanban2 = ' van khai'
-print(KMP(vanban2, vanban1))
+S1 = "a pattern matching algorithm"
+S2 = "rithm"
+print(KMP(S2, S1))
     
     

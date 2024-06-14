@@ -1,17 +1,5 @@
 import math
 import random
-
-def phantich(n):
-    x = n - 1
-    s = 0
-    while x % 2 == 0:
-        s += 1
-        x //= 2
-    r = x
-    return s, r
-
-import random
-
 def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
     arr2 = []
     cnt = 0
@@ -63,30 +51,6 @@ def miller(n, t):
             if y != n - 1:
                 return False
     return True
-
-if __name__ == '__main__':
-    t = int(input('Nhập số lần lặp: '))
-    while True:
-        n = int(input('Nhập N: '))
-        if 0 < n < 1000:
-            break
-        else:
-            print('Mời bạn nhập lại!')
-
-    p = int(input('Nhập p: '))
-
-    ok = False
-    for a in range(n + 1):  # Thêm 1 để kiểm tra cả giá trị a = 0
-        a_value = a
-        k = modulo(a_value, p, n)
-        if miller(k, t) == True:
-            print(f"a = {a_value}, thỏa mãn {a_value} ^ {p} % {n} là số nguyên tố")
-            print('')
-            ok = True
-    if not ok:
-        print('Không có số nào thỏa mãn!')
-
-
 def miller(n, t):
     if n == 2 or n == 3:
         return True
@@ -108,7 +72,7 @@ def miller(n, t):
     return True
 
 def distance(A):
-    min_distance = 10000000  
+    min_distance = 1000000000  
     for i in range(len(A)):
         for j in range(i + 1, len(A)):
             k = abs(A[i] - A[j])
@@ -118,9 +82,10 @@ def distance(A):
 def list_primes(start, end, t, n):
     primes = []
     cnt = 0
-    for i in range(start, end + 1):
+    while(True):
         if cnt == n:
             break
+        i = random.randint(start, end)
         if miller(i, t):
             cnt += 1
             primes.append(i)    

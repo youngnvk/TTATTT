@@ -1,6 +1,5 @@
 import random
 import math
-
 def bin(k):
     cnt = 0
     arr = []

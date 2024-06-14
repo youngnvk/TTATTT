@@ -16,11 +16,12 @@ def nto(n):
             return False
     return True
 if __name__=='__main__':
-    input_fake = input('Nhập các số : ')
+    input1 = input('Nhập các số : ')
     # Nhập mảng từ bàn phím
-    array = list(map(int, input_fake.split()))
-    cnt = 0
+    array = list(map(int, input1.split()))
+    cnt = 1
     for i in range(len(array)):
         for j in range(i + 1, len(array)):
             if nto(gcd(array[i], array[j])):
-                print(f'cặp số ({array[i]}, {array[j]})')
+                print(f'cặp số thứ {cnt} ({array[i]}, {array[j]})')
+                cnt += 1
