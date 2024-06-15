@@ -1,11 +1,4 @@
-import math
-def checknto(n):
-    if n < 2:
-        return False
-    for i in range(2, int(math.sqrt(n)) + 1):
-        if n % i == 0:
-            return False
-    return True
+import random
 def bin(n):
     arr = []
     cnt = 0
@@ -15,7 +8,7 @@ def bin(n):
         cnt += 1
         n = n / 2
     return cnt, arr
-def modulo(a, k, n):
+def binhphuongcolap(a, k, n):
     cnt, arr = bin(k)
     b = 1
     if k == 0:
@@ -28,13 +21,21 @@ def modulo(a, k, n):
         if arr[i] == 1:
             b = (A * b) % n
     return b
-if __name__ == '__main__':
-    a = int(input('Nhap a: '))
-    k = int(input('Nhap k: '))
-    n = int(input('Nhap n: '))
-    test = modulo(a, k, n)
-    if test:
-        print('Nguyen to')
-    else:
-        print('Hop so')
-#sai khi cho t nho
+def fermat(n, t):
+    if n == 2 or n == 3:
+        return True
+    if n <= 1 or n % 2 == 0:
+        return False
+    for i in range(t):
+        a = random.randint(2, n - 2)
+        if binhphuongcolap(a, n - 1, n) != 1:
+            return False
+    return True
+
+n = int(input('Nhap n: '))
+t = int(input('So lan lap: '))
+k = fermat(n, t)
+if k:
+    print('Nguyen to')
+else:
+    print('Hop so')
