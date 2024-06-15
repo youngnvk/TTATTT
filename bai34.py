@@ -6,7 +6,7 @@ def bin(n):
         r = n % 2
         arr.append(r)
         cnt += 1
-        n = n // 2 
+        n = n // 2
     return cnt, arr
 def binhphuongcolap(a, k, n):
     cnt, arr = bin(k)
