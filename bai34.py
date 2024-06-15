@@ -6,7 +6,7 @@ def bin(n):
         r = n % 2
         arr.append(r)
         cnt += 1
-        n = n / 2
+        n = n // 2 
     return cnt, arr
 def binhphuongcolap(a, k, n):
     cnt, arr = bin(k)
@@ -31,7 +31,6 @@ def fermat(n, t):
         if binhphuongcolap(a, n - 1, n) != 1:
             return False
     return True
-
 n = int(input('Nhap n: '))
 t = int(input('So lan lap: '))
 k = fermat(n, t)
