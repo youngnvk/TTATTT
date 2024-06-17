@@ -48,11 +48,11 @@ def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bìn
     cnt, arr2 = bin(k)
     b = 1
     if k == 0:
-        return 1  # 0^0 là 1 theo định nghĩa
+        return 1 
     A = a
     if arr2[0] == 1:
         b = a 
-    for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai
+    for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai vif kiem tra 0 roi
         A = (A * A) % n
         if arr2[i] == 1:
             b = (A * b) % n

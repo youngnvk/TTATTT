@@ -21,7 +21,7 @@ def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bìn
     cnt, arr2 = bin(k)
     b = 1
     if k == 0:
-        return 1  # 0^0 là 1 theo định nghĩa
+        return 1  # a^0 là 1 theo định nghĩa
     A = a
     if arr2[0] == 1:
         b = a 
@@ -60,7 +60,6 @@ def main():
     arr = []
     for i in range(2, n + 1):
         if is_carmichael(i):
-            cnt += 1
             arr.append(i)
     print(sum(arr))
 if __name__ == "__main__":

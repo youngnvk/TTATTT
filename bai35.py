@@ -42,7 +42,7 @@ def miller(n, t):
         if y != 1 and y != n - 1:
             j = 1 #gan j = 1
             while j <= s - 1 and y != n - 1:
-                y = modulo(y, 2, n)
+                y = (y * y) % 2
                 if y == 1:
                     return False
                 j = j + 1
