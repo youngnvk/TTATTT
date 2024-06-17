@@ -1,9 +1,9 @@
 import math
 def boyer(P, T):
-    if len(P) > len(T):
-        return False
     m = len(P)
     n = len(T)
+    if m > n:
+        return -1
     i = j = m - 1
     while(i < n):
         if P[j] == T[i]:
@@ -16,7 +16,7 @@ def boyer(P, T):
             #tiền xử lý
             i = i + m - min(j, 1 + check_last_P(T[i],P)) #cập nhật vị trí i
             j = m - 1 #cập nhật lại j
-    return False #không tìm thấy     
+    return -1 #không tìm thấy     
 def check_last_P(k, P): #hàm kiểm tra vị trí cuối cùng trong P
     vt = -1 #không có kí tự thì trả về vị trí là -1
     for i in range(0, len(P)):
@@ -27,7 +27,7 @@ if __name__=='__main__':
     S1 = "a pattern matching algorithm"
     S2 = "rithm"
     TEST = boyer(S2, S1)
-    if TEST == False:
+    if TEST == -1:
         print('P không có trong T.')
     else:
         print(f'P có trong T bắt đầu từ vị trí {TEST}.')  

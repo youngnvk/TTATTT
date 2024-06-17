@@ -29,10 +29,11 @@ def failure(k, P):
             x = i
     return x
 
-S1 = "abacaabaccabacabaabb"
-S2 = "abacab"
-result = KMP(S2, S1)
-if result != -1:
-    print("Kết quả là:", result)
-else:
-    print("Không có chuỗi S2 trong S1")
+if __name__=='__main__':
+    T = input('Nhập chuỗi T : ')  
+    P = input('Nhập chuỗi P : ')
+    result = KMP(P, T)
+    if result != -1:
+        print(f'P có trong T bắt đầu từ vị trí {result}.')  
+    else:
+        print("Không có chuỗi S2 trong S1")
