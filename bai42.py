@@ -72,6 +72,6 @@ if __name__ == '__main__':
         k = modulo(a, p, q)
         if miller(k, t):
             ok = True
-            print(f"a = {a}, thỏa mãn {a} ^ {p} % {q} = {k} là số nguyên tố")
-    if not ok:
+            print(f"a = {a}, thỏa mãn vì {a} ^ {p} % {q} = {k} là số nguyên tố")
+    if ok == False:
         print('Không có số a nào thỏa mãn ~')
