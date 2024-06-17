@@ -15,9 +15,15 @@ def checkNto(n):
             return False
     return True
 if __name__== '__main__':
+    while(True):
+        n = int(input('Nhập khoảng N để kiểm tra : '))
+        if 2 <= n < 1000:
+            break
+        else:
+            print('Mời bạn nhập lại')
     cnt = 0
-    for i in range(1, 1000):
-        for j in range(i + 1, 1000):
+    for i in range(1, n):
+        for j in range(i + 1, n):
             gcd_a_b = gcd2(i, j)
             if checkNto(gcd_a_b):
                 cnt += 1
