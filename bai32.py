@@ -9,9 +9,9 @@ def is_prime(n):
             return False
     return True
 
-def random_prime(n): #random ra 1 so nguyen to trong khoang 101-499
+def random_prime(l, r): #random ra 1 so nguyen to trong khoang 101-499
     while True:
-        p = random.randint(101, n)
+        p = random.randint(l, r)
         if is_prime(p):
             break
     return p
@@ -84,9 +84,13 @@ def tim_e(n):
             break
     return e
 if __name__ == '__main__':
-    n = 500
-    p = random_prime(n)
-    q = random_prime(n)
+    l = 101
+    r = 500
+    p = random_prime(l, r)
+    while True:
+        q = random_prime(l, r)
+        if q != p: # p != q thì mới nhận
+            break
     print(f"2 số nguyên tố p và q chọn được trong khoảng (100->500) là : {p} và {q}")
     n = p * q
     print(f"giá trị của n = {p} * {q} là : {n}")
