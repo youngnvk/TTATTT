@@ -11,12 +11,12 @@ def nghichdao(a, p):
     if gcd(a, b) != 1:
         return False
     u = a
-    if u == 0:
-        return False
     v = p
     x1 = 1
     x2 = 0
-    while u != 1 and u != 0:
+    if u == 0:
+        return False
+    while u != 1:
         q = v // u
         r = v - q * u
         x = x2 - q * x1

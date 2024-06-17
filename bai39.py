@@ -16,12 +16,14 @@ def nto(n):
             return False
     return True
 if __name__=='__main__':
-    input1 = input('Nhập các số : ')
+    n = int(input('Nhập số lượng phần tử: '))
     # Nhập mảng từ bàn phím
-    array = list(map(int, input1.split()))
-    cnt = 1
-    for i in range(len(array)):
-        for j in range(i + 1, len(array)):
-            if nto(gcd(array[i], array[j])):
-                print(f'cặp số thứ {cnt} ({array[i]}, {array[j]})')
+    arr = [0] * (n)
+    for i in range(n):
+        arr[i] = int(input(f'Nhập phần tử mảng thứ {i} là : '))
+    cnt = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nto(gcd(arr[i], arr[j])):
                 cnt += 1
+                print(f'cặp số thứ {cnt} ({arr[i]}, {arr[j]})')
