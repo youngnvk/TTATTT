@@ -33,7 +33,7 @@ if __name__ == '__main__':
     # Tính tích của a(x) và b(x)
     d = Phepnhan(a, b)
     print("Tích của a(x) và b(x):", d)
-    
+    #bài sai
     # Tính thương và dư của phép chia
     quotient, remainder = Phepchia(d, g)
     print("Thương của phép chia:", quotient)
