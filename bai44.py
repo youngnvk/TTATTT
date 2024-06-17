@@ -42,4 +42,5 @@ if __name__=='__main__':
     if len(B) == n:
         print('Mảng B có các phần tử là nghịch đảo của các phần tử tương ứng trong A:')
         print(f'B = {B}')
-
+# A = [5, 7, 11, 13, 3, 23]
+# p = 2
