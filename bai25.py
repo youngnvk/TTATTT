@@ -1,6 +1,6 @@
 import math
 import itertools
-def eratosthenes(n):
+def eratosthenes(n): #hàm eratosthenes sàng
     primes = [1] * (n + 1)
     primes[0] = primes[1] = 0
     for i in range(2, int(math.sqrt(n)) + 1):
@@ -22,8 +22,8 @@ if __name__ == "__main__":
             break
         else:
             print("Vui lòng nhập lại N và M!")
-    Result = test(n, m)  # Di chuyển đoạn mã này ra ngoài vòng lặp while
-
+    Result = test(n, m)
+    #in số
     if Result:
         print(f"Số {n} có thể phân tích thành tổng của {m} số nguyên tố là: {n} = ", end="")
         cnt = 0
