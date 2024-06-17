@@ -1,34 +1,10 @@
-import random
-import math
-
 def Phepcong(a, b):
-    C = [0] * (len(a) + 1) 
-    for i in range(len(a)):
-        if i < len(b):  # Check if b has enough elements
-            C[i] = (a[i] + b[i]) % 2
-        else:
-            C[i] = a[i] % 2 # Default to a[i] if b is shorter
+    # Đảm bảo cả hai đa thức có cùng độ dài
+    length = max(len(a), len(b))
+    a = [0] * (length - len(a)) + a
+    b = [0] * (length - len(b)) + b
+    C = [(a[i] + b[i]) % 2 for i in range(length)]
     return C
-def Phepchia(d, g):
-    x = len(d) - 1
-    y = len(g) - 1
-    while x >= y:
-        q = [0] * (len(d) - len(g) + 1)
-        q[x - y] = 1  # Set the correct quotient coefficient to 1
-        d = Phepcong(d, Phepnhan(q, g))  # Perform polynomial subtraction properly
-        x = - 1 # Update degree of remainder
-    return d
-
-def Phepnhan1(a, b):
-    deg_a = len(a)
-    deg_b = len(b)
-    d = [0] * (deg_a + deg_b - 1)
-    for i in range(deg_a):
-        for j in range(deg_b):
-            d[i + j] = (d[i + j] + a[i] * b[j]) % 2
-    while d and d[0] == 0:
-        d.pop(0)  # Remove leading zeros
-    return d
 
 def Phepnhan(a, b):
     deg_a = len(a)
@@ -38,16 +14,27 @@ def Phepnhan(a, b):
         for j in range(deg_b):
             d[i + j] = (d[i + j] + a[i] * b[j]) % 2
     return d
-
+def Phepchia(d, g):
+    x = len(d) - 1
+    y = len(g) - 1
+    while x >= y:
+        q = [0] * (len(d) - len(g) + 1)
+        q[x - y] = d[x]
+        d = Phepcong(d, Phepnhan(q, g))
+        while len(d) > 0 and d[0] == 0:
+            d.pop(0)
+        x -= 1
+    return d[-4:]    
 if __name__ == '__main__':
-    a1 = [0, 1, 0, 1]
-    g = [1, 0, 1, 1]  
-    b = [0, 1, 1, 1]
+    a = [1, 0, 1, 0]  # 1 + x^2
+    g = [1, 0, 1, 1]  # 1 + x + x^3
+    b = [1, 1, 1, 0]  # 1 + x + x^2
     
-    # Perform polynomial multiplication
-    d = Phepnhan(a1, b)
-    print("Product of a(x) and b(x):", d)
+    # Tính tích của a(x) và b(x)
+    d = Phepnhan(a, b)
+    print("Tích của a(x) và b(x):", d)
     
-    # Perform polynomial division
-    remainder = Phepchia(d, g)
-    print("Remainder of division:", remainder)
+    # Tính thương và dư của phép chia
+    quotient, remainder = Phepchia(d, g)
+    print("Thương của phép chia:", quotient)
+    print("Dư của phép chia:", remainder)

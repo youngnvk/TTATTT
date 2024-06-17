@@ -21,7 +21,7 @@ def check_last_P(k, P): #hàm kiểm tra vị trí cuối cùng trong P
     vt = -1 #không có kí tự thì trả về vị trí là -1
     for i in range(0, len(P)):
         if k == P[i]:
-            vt = i #cứ chạy đến cuối sẽ ra vị trí đầu tiên khi duyệt ngược
+            vt = i #cứ chạy đến cuối sẽ ra vị trí đầu tiên
     return vt   
 if __name__=='__main__':
     S1 = "a pattern matching algorithm"
