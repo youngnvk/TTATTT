@@ -60,4 +60,4 @@ if __name__ == "__main__":
     for i in range(2, n + 1):
         if is_carmichael(i):
             cnt += 1
-    print(cnt)
+    print(f"Có {cnt} số carmichael !")

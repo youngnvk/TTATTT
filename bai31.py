@@ -1,19 +1,19 @@
 import math
 
-def get_phan_so(maSinhVien):  # hàm lấy phần số mã sinh viên
+def get_phan_so(maSinhVien):  # hàm lấy phần (số) của mã sinh viên AT190128 ->190128
     limit = len(maSinhVien)
     ma = 0
     maSinhVien_reversed = maSinhVien[::-1]  # reverse the string
     for i in range(limit):
-        if maSinhVien_reversed[i].isdigit():  # kiểm tra là số
+        if maSinhVien_reversed[i].isdigit():  # kiểm tra là số thì tính
             ma += 10 ** i * int(maSinhVien_reversed[i])  # calculate the reversed number
-    return int(ma)
+    return int(ma) #trả về dạng số
 
 def eratosthenes_segment(l, r):  # eratosthenes tạo mảng nguyên tố
     limit = r - l + 1
     primes = [1] * limit
     if l == 0:
-        primes[0] = 0
+        primes[0] = primes[1] = 0
     if l == 1:
         primes[1] = 0  # gán 2 thằng ban đầu là 0
     for i in range(2, int(math.sqrt(r) + 1)):
@@ -22,9 +22,9 @@ def eratosthenes_segment(l, r):  # eratosthenes tạo mảng nguyên tố
             primes[j - l] = 0
     return [i for i in range(max(2, l), r + 1) if primes[i - l]]
 
-def work(ma, primes):  # hàm lấy ra số gần nhất
+def work(ma, primes):  # hàm lấy ra số nguyên tố gần nhất
     tmp = None  # tmp ban đầu
-    min_distance = float('inf')  # cho min vô cùng lớn
+    min_distance = 1000000000 # cho min vô cùng lớn
     for i in primes:
         distance = abs(ma - i)
         if distance < min_distance:
@@ -61,14 +61,14 @@ def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bìn
 if __name__ == '__main__':
     maSinhVien = input('Nhập vào mã sinh viên của bạn: ')
     ma = get_phan_so(maSinhVien)
-    n = 123456
-    a = int(input('Nhập vào SBD của bạn: '))
-    # giả sử giới hạn phần check số nguyên tố trong khoảng 2->100000
-    primes = eratosthenes_segment(2, 100000)
+    primes = eratosthenes_segment(2, 1000000)
     k = work(ma, primes)
+    print(f"số nguyên tố gần với phần số của MSV = {ma} nhất là : ", k)
+    a = int(input('Nhập vào SBD của bạn: '))
     # Từ số k tìm được tính a^k mod n (a = SBD)
+    n = 123456
     result = modulo(a, k, n)
-    print(result)
+    print(f"Kết quả của {a} ^ {k} mod {n} = {result}")
     
     
     
