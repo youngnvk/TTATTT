@@ -129,4 +129,4 @@ if __name__ == "__main__":
     nghich_dao_a = tim_nghich_dao(da_thuc_a, da_thuc_g)  # Tìm nghịch đảo của a(x) trong trường hữu hạn với modulo g(x)
 
     print(f"a^-1(x) = {f"Đảo ngược của đa thức {da_thuc_a_input}", nhi_phan_sang_chuoi(nghich_dao_a)}")  # In ra nghịch đảo của a(x) dưới dạng chuỗi
-
+#khó
