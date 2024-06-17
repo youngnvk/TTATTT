@@ -48,7 +48,7 @@ def is_carmichael(n):
                 return False
     return True
 
-def main():
+if __name__ == "__main__":
     while(True):
         n = int(input('Nhap N: '))
         if 0 <= n <= 10000:
@@ -56,9 +56,8 @@ def main():
         else:
             print('Nhập lại')
     arr = []
+    cnt = 0
     for i in range(2, n + 1):
         if is_carmichael(i):
             cnt += 1
     print(cnt)
-if __name__ == "__main__":
-    main()
