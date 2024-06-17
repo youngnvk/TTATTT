@@ -14,7 +14,7 @@ def nghichdao(a, p):
     v = p
     x1 = 1
     x2 = 0
-    if u == 0: #dieu kieu chia cho so 0
+    if u == 0: #dieu kieu chia 0
         return False
     while(u != 1):
         q = v // u
