@@ -45,16 +45,16 @@ def bin(n):  # Chuyển đổi số nguyên sang dạng nhị phân
     return cnt, arr2
 
 def modulo(a, k, n):  # Hàm tính lũy thừa modulo bằng phương pháp bình phương và nhân
-    cnt, arr2 = bin(k)
+    cnt, arr = bin(k)
     b = 1
     if k == 0:
         return 1 
     A = a
-    if arr2[0] == 1:
+    if arr[0] == 1:
         b = a 
     for i in range(1, cnt):  # Bắt đầu từ phần tử thứ hai vif kiem tra 0 roi
         A = (A * A) % n
-        if arr2[i] == 1:
+        if arr[i] == 1:
             b = (A * b) % n
     return b
 

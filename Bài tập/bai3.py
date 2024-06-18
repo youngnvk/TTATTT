@@ -8,7 +8,7 @@ def phantichNto(N, A): #Ham tach uoc nguyen to
                 N //= i
     if (N != 1):
         A.append(N)
-def phantich(N, B):
+def phantich(N, B): #phan tich uoc
     limit = int(math.sqrt(N)) + 1
     for i in range(1, limit, 1):
         if N % i == 0:

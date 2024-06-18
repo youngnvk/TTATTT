@@ -3,7 +3,7 @@ def cong(da_thuc_a, da_thuc_b):
     Thực hiện phép cộng đa thức da_thuc_a và da_thuc_b trong trường hữu hạn.
     """
     do_dai = max(len(da_thuc_a), len(da_thuc_b))  # Độ dài của đa thức kết quả
-    ket_qua = [0] * do_dai  # Khởi tạo mảng kết quả ban đầu là 0
+    ket_qua = [0] * do_dai  # tạo mảng kết quả ban đầu là 0
     for i in range(do_dai):
         if i < len(da_thuc_a):
             ket_qua[i] ^= da_thuc_a[i]  # XOR từng hệ số của da_thuc_a
@@ -16,7 +16,7 @@ def nhan(da_thuc_a, da_thuc_b):
     Thực hiện phép nhân đa thức da_thuc_a và da_thuc_b trong trường hữu hạn.
     """
     do_dai = len(da_thuc_a) + len(da_thuc_b) - 1  # Độ dài của đa thức kết quả
-    ket_qua = [0] * do_dai  # Khởi tạo mảng kết quả ban đầu là 0
+    ket_qua = [0] * do_dai  # tạo mảng kết quả ban đầu là 0
     for i in range(len(da_thuc_a)):
         for j in range(len(da_thuc_b)):
             ket_qua[i + j] ^= da_thuc_a[i] * da_thuc_b[j]  # XOR từng tích của da_thuc_a[i] và da_thuc_b[j]
@@ -44,13 +44,13 @@ def chia(da_thuc_a, da_thuc_b):
     """
     Thực hiện phép chia đa thức da_thuc_a cho da_thuc_b trong trường hữu hạn và trả về phần nguyên.
     """
-    ket_qua = [0] * len(da_thuc_a)  # Đa thức kết quả ban đầu
+    ket_qua = [0] * len(da_thuc_a)  # Đa thức ban đầu
     phan_du = da_thuc_a[:]  # Sao chép đa thức da_thuc_a để tính phần dư
     bac_da_thuc_b = len(da_thuc_b) - 1  # Bậc của đa thức da_thuc_b
 
     for i in range(len(da_thuc_a) - 1, bac_da_thuc_b - 1, -1):
         if phan_du[i] == 1:
-            ket_qua[i - bac_da_thuc_b] = 1  # Cập nhật hệ số tương ứng của phần nguyên
+            ket_qua[i - bac_da_thuc_b] = 1  # Cập nhật hệ số của phần nguyên
             for j in range(bac_da_thuc_b):
                 phan_du[i - j] ^= da_thuc_b[j]  # XOR với da_thuc_b để cập nhật phần dư
 
@@ -60,8 +60,8 @@ def tim_nghich_dao(da_thuc_a, da_thuc_mod):
     """
     Tìm nghịch đảo của đa thức da_thuc_a trong trường hữu hạn với modulo da_thuc_mod bằng thuật toán Euclide mở rộng.
     """
-    x0, x1 = [1], [0]  # Khởi tạo x0 = 1 và x1 = 0
-    y0, y1 = [0], [1]  # Khởi tạo y0 = 0 và y1 = 1
+    x0, x1 = [1], [0]  #tạo x0 = 1 và x1 = 0
+    y0, y1 = [0], [1]  #tạo y0 = 0 và y1 = 1
 
     while len(da_thuc_mod) > 1 or da_thuc_mod[0] != 0:
         phan_nguyen = chia(da_thuc_a, da_thuc_mod)  # Tính phần nguyên
@@ -78,7 +78,7 @@ def chuoi_sang_nhi_phan(chuoi):
     """
     Chuyển đổi biểu thức đa thức từ chuỗi sang mảng nhị phân.
     """
-    cac_thuoc = chuoi.split('+')  # Tách các thuật ngữ
+    cac_thuoc = chuoi.split('+') 
     bac = 0
     for thuoc in cac_thuoc:
         if 'x^' in thuoc:
@@ -89,7 +89,7 @@ def chuoi_sang_nhi_phan(chuoi):
             bac_hien_tai = 0
         bac = max(bac, bac_hien_tai)
 
-    da_thuc = [0] * (bac + 1)  # Khởi tạo mảng đa thức
+    da_thuc = [0] * (bac + 1)  # tạo mảng đa thức
     for thuoc in cac_thuoc:
         if 'x^' in thuoc:
             chi_so = int(thuoc[thuoc.index('^') + 1:].strip())
@@ -109,13 +109,13 @@ def nhi_phan_sang_chuoi(da_thuc_nhi_phan):
     for i in range(len(da_thuc_nhi_phan) - 1, -1, -1):
         if da_thuc_nhi_phan[i] == 1:
             if ket_qua:
-                ket_qua.append(" + ")  # Thêm dấu '+' nếu có thuật ngữ trước đó
+                ket_qua.append(" + ")  # Thêm dấu '+' 
             if i == 0:
-                ket_qua.append("1")  # Thuật ngữ độc lập
+                ket_qua.append("1") 
             elif i == 1:
-                ket_qua.append("x")  # Thuật ngữ bậc 1
+                ket_qua.append("x") 
             else:
-                ket_qua.append(f"x^{i}")  # Thuật ngữ bậc i
+                ket_qua.append(f"x^{i}")  
 
     return ''.join(ket_qua)
 
@@ -128,5 +128,5 @@ if __name__ == "__main__":
 
     nghich_dao_a = tim_nghich_dao(da_thuc_a, da_thuc_g)  # Tìm nghịch đảo của a(x) trong trường hữu hạn với modulo g(x)
 
-    print(f"a^-1(x) = {f"Đảo ngược của đa thức {da_thuc_a_input}", nhi_phan_sang_chuoi(nghich_dao_a)}")  # In ra nghịch đảo của a(x) dưới dạng chuỗi
-#khó
+    print(f"a^-1(x) la", nhi_phan_sang_chuoi(nghich_dao_a))  # In ra nghịch đảo của a(x) dưới dạng chuỗi
+

@@ -8,7 +8,7 @@ def T_prime(n):
                 cnt += 1  # Trường hợp n là số chính phương
             else:
                 cnt += 2  # Cặp ước (i, n // i)
-    if cnt == 4:
+    if cnt == 3:
         ok = True
     return ok
 if __name__ == '__main__':
