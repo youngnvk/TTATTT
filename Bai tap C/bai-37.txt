@@ -1,0 +1,57 @@
+//thu tu tu trai sang phai(thuong tu vet can), dich chuyen mau thong minh hon so voi vet can
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+//kiem tra xem cac ki tu co trung khop nhau hay khong
+int sosanhchuoi(char P[],int j, int i){
+	int check = 0, x;
+	for(x = 0; x < i; x++){
+		if(P[x] == P[j-i+x]) check++;
+	}
+	if(check == i) return 1;
+	return 0;
+} 
+//kiem tra su trung khop cua tien to va hau to la bao nhieu ki tu 
+int kiemtra(char P[], int j){
+	int i;
+	for(i = j - 1; i>= 0; i--){
+		if(sosanhchuoi(P,j,i) == 1) return i;
+    }
+    return 0;
+} 
+void failureFunction(char P[], int F[]){
+	F[0] = -1;
+	int j;
+	for(j = 1; j < strlen(P); j++){
+		F[j] = kiemtra(P,j); 
+	}
+} 
+int main(){
+	char T[10000], P[10000];
+	fflush(stdin); 
+	printf("Nhap vao T: ");
+	gets(T);
+	fflush(stdin);
+	printf("Nhap vao P: "); 
+	gets(P);
+	int F[strlen(P)];
+	failureFunction(P,F);
+	int i = 0, j = 0, check = 0;
+	while(i <= strlen(T) - strlen(P)){
+		int inew = i + j;
+		if(T[inew] == P[j]){
+			inew++;
+			j++;
+			if(j == strlen(P)) {
+				printf("P xuat hien trong T tai vi tri : %d",i);
+				check = 1;
+				break;
+			}
+		}else{
+			i = j + i - F[j];
+			j = F[j] == -1 ? 0 : F[j]; 
+		}
+	}
+	if(check == 0) printf("P khong xuat hien trong T");
+	return 0;
+}

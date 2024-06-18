@@ -1,0 +1,79 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+//ax+py=1
+int gcd(int a,int b)
+{
+    if(a<b)
+    {
+        int tmp=a;
+        a=b;
+        b=tmp;
+    }
+    while(b!=0)
+    {
+        int r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}
+int timnghichdao(int a,int p)
+{
+    int r1=p;
+    int r2=a;
+    int x1=0;
+    int y1=1;
+    int x2=1;
+    int y2=0;
+    while(r2!=0)
+    {
+        int r3=r1%r2;
+        int q=r1/r2;
+        int x3=x1-q*x2;
+        int y3=y1-q*y2;
+        r1=r2;
+        r2=r3;
+        x1=x2;
+        y1=y2;
+        x2=x3;
+        y2=y3;
+    }
+    if(x1<0)
+    {
+        x1=x1+p;
+    }
+    return x1;
+}
+void nhapMang(int a[],int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+}
+void xuli(int a[],int n,int p)
+{
+    for(int i=0;i<n;i++)
+    {
+        if(gcd(a[i],p)==1)
+        {
+            printf("so nghich dao cua a[%d] =%d la: %d\n",i,a[i],timnghichdao(a[i],p));
+        }
+        else
+        {
+            printf("a[%d]=%d khong co nghich dao\n",i,a[i]);
+        }
+    }
+}
+int main()
+{
+    int a[1000];
+    int p,n;
+    printf("Nhap so p: ");scanf("%d",&p);
+    printf("Nhap so phan tu n: ");scanf("%d",&n);
+    nhapMang(a,n);
+    xuli(a,n,p);
+
+}

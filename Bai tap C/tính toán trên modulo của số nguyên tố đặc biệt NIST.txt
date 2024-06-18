@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <gmp.h>
+
+int main() {
+  // Khai báo giá trị p-256 là modulo
+  mpz_t p256;
+  mpz_init_set_str(p256, "115792089210356248762697446949407573530086143415290314195533631308867097853951", 10);
+
+  // Khai báo hai số nguyên a và b
+  mpz_t a, b;
+  mpz_init_set_str(a, "987654321987654321", 10);
+  mpz_init_set_str(b, "123456789123456789", 10);
+
+  // Tính toán tổng của a và b, sau đó lấy kết quả theo modulo p-256
+  mpz_t sum;
+  mpz_init(sum);
+  mpz_add(sum, a, b);
+  mpz_mod(sum, sum, p256);
+
+  // In kết quả của phép tính
+  gmp_printf("Tong cua hai so %Zd va %Zd la %Zd theo modulo p-256\n", a, b, sum);
+
+  // Giải phóng bộ nhớ
+  mpz_clear(p256);
+  mpz_clear(a);
+  mpz_clear(b);
+  mpz_clear(sum);
+
+  return 0;
+}

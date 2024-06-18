@@ -1,0 +1,61 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+//ax+py=1
+int gcd(int a,int b)
+{
+    if(a<b)
+    {
+        int tmp=a;
+        a=b;
+        b=tmp;
+    }
+    while(b!=0)
+    {
+        int r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}
+int timnghichdao(int a,int p)
+{
+    int r1=p;
+    int r2=a;
+    int x1=0;
+    int y1=1;
+    int x2=1;
+    int y2=0;
+    while(r2!=0)
+    {
+        int r3=r1%r2;
+        int q=r1/r2;
+        int x3=x1-q*x2;
+        int y3=y1-q*y2;
+        r1=r2;
+        r2=r3;
+        x1=x2;
+        y1=y2;
+        x2=x3;
+        y2=y3;
+    }
+    return x1;
+}
+int main()
+{
+    int n,p;
+    printf("Nhap n= ");
+    scanf("%d",&n);
+    printf("Nhap p= ");
+    scanf("%d",&p);
+    if(gcd(n,p)==1)
+    {
+         printf("nghich dao cua %d^-1 mod %d la %d \n",n,p,timnghichdao(n,p));
+    }
+    else
+    {
+        printf("khong co so nghich dao");
+    }
+
+}

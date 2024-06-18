@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#define true 1
+#define false 0
+#include <time.h>
+int f[1000];
+int gcd(int a,int b)
+{
+    while(b!=0)
+    {
+        int r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}
+int random_num(int N) {
+    return rand() % (N-1) + 1;
+}
+int hash(int a,int n)
+{
+    return (a*a+1)%n;
+}
+int laSNT(int n)
+{
+    if(n<=1)
+    {
+        return false;
+    }
+    for (int i=2;i<sqrt(n);i++)
+    {
+        if(n%i==0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+void timthuasoprime(int n)
+{
+    int a=random_num(n);
+    int b=a;
+    int d=1;
+    int dem=1;
+    while(true)
+    {
+        a=hash(a,n);
+        int k=hash(b,n);
+        b=hash(k,n);
+        d=gcd(abs(a-b),n);
+        if(d==n)
+        {
+            f[dem]=d;
+            break;
+        }
+        if(d>1&&d<n)
+        {
+            f[dem]=d;
+            dem++;
+            int thuaso=n/d;
+            if(laSNT(thuaso)==false)
+            {
+                a=2;
+                b=2;
+                n=thuaso;
+            }
+            else
+            {
+                f[dem]=thuaso;
+                break;
+            }
+        }
+
+
+    }
+    for(int i=1;i<=dem-1;i++)
+    {
+        printf("%dx",f[i]);
+    }
+    printf("%d",f[dem]);
+
+
+}
+int main()
+{
+    srand(time(NULL));
+    int n;
+    scanf("%d",&n);
+    timthuasoprime(n);
+}
+

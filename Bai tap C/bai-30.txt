@@ -1,0 +1,116 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<time.h>
+#define true 1
+#define false 0
+int k1[10000];
+int b1[10000];
+
+int gcd(int a,int b)
+{
+    while(b!=0)
+    {
+        int r=a%b;
+        a=b;
+        b=r;
+    }
+    return a;
+}
+int Bin(int n)
+{
+    int dem=0;
+    while(n!=0)
+    {
+        int r=n%2;
+        k1[dem]=r;
+        dem++;
+        n=n/2;
+    }
+    return dem;
+}
+
+int binhphuonglap(int a,int k,int n)// tìm mod
+{
+    int dem=Bin(k);
+    int b=1;
+    if(k==0)
+    {
+        return b;
+    }
+    int A=a;
+    if(k1[0]==1)
+    {
+        b=a;
+    }
+    for(int i=1;i<=dem-1;i++)
+    {
+        A=(A*A)%n;
+        if(k1[i]==1)
+        {
+            b=(A*b)%n;
+        }
+    }
+    return b;
+}
+
+int laSNT(int n)
+{
+    int a[1000];
+    for (int i=1;i<=n;i++)
+    {
+        a[i]=0;
+    }
+    a[1]=0;
+    for (int i=2;i<=sqrt(n);i++)
+    {
+        if(a[i]==0)
+        {
+            for(int j=i*i;j<=n;j+=i)
+            {
+                a[j]=1;
+            }
+        }
+    }
+    if(a[n]==0){
+            return true;
+    }
+    return false;
+}
+int kiemtrasocarmichael(int n)
+{
+    if(laSNT(n)==true)
+    {
+        return 0;
+    }
+    for(int i=2;i<n;i++)
+    {
+        if(gcd(n,i)==1)
+        {
+            if(binhphuonglap(i,n-1,n)!=1)
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int sum=0;
+    for (int i=1;i<=n;i++)
+    {
+
+        if(kiemtrasocarmichael(i)==1)
+        {
+          printf("%d ",i);
+        sum=sum+i;
+        }
+    }
+  printf("%d",sum);
+
+}

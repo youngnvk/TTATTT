@@ -1,0 +1,139 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define true 1
+#define false 0
+int dem=0;
+int dem1=0;
+char T[100];
+char P[100];
+void nhapchuoi()
+{
+    printf("Nhap chuoi T: ");
+    gets(T);
+    printf("Nhap chuoi P: ");
+    gets(P);
+}
+//Hàm tìm giá trị nhỏ nhất để phục vụ cho việc sử dụng công thức ở dưới hàm xuli()
+int min(int a,int b)
+{
+    if(a>=b)
+    {
+        return b;
+    }
+    else
+    {
+        return a;
+    }
+}
+//hàm tim chỉ số lớn nhất của kí tự bất kì trong chuỗi P
+int L(char a)
+{
+    for(int i=strlen(P)-1; i>=0; i--)
+    {
+        if(P[i]==a)
+            return i;
+    }
+    return -1;
+}
+// hàm kiểm tra xem kí tự nào đó có trong chuỗi P không.
+int kiemtra(char a)
+{
+    for (int i=strlen(P)-2; i>=0; i--)
+    {
+        if(P[i]==a)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+//hàm kiểm tra xem chuỗi P có nằm trong khoang (i,j) mình đang xét không
+int sosanhTP(int i,int j)
+{
+    int idx=strlen(P)-1;
+    for(int k=j; k>=i; k--)
+    {
+        if(P[idx]!=T[k])
+        {
+             return false;
+        }
+           idx--;
+    }
+    return true;
+}
+// hàm  thực hiện thuật toán chính
+void xuli()
+{
+    int i=strlen(P)-1;// gán giá trị i = độ dài của chuỗi P trừ 1 vì chỉ số bắt đầu từ 0. đánh dấu vị trị so sánh đầu tiên của chuỗi T
+    int j=strlen(P)-1;// đánh dấu phần tử cuối của P
+    int m=strlen(P);// đọ dài của chuỗi P
+    while(i<=strlen(T)-1)// khi i chưa kiểm tra hết chuỗi T thì tiếp tục lặp
+    {
+        if(T[i]!=P[j])
+        {
+            if(kiemtra(T[i])==true)// kiểm tra T[i] có trong P không
+            {
+
+                i=i+m-min(j,1+L(T[i])); //Đây là công thức cố định của thuật toán
+                j=m-1;
+            }
+            else// nếu không có
+            {
+                i=i+m;
+                j=m-1;
+
+            }
+        }
+        else
+        {
+            if(sosanhTP(i-m+1,i)== true)
+            {
+               // printf("tim thay\n");
+              //  printf("mat %d buoc de tim thay",dem);
+                dem1++;
+                printf("lan %d tai vi tri %d\n",dem1,i-m+1);
+                if(kiemtra(T[i])==true)
+                {
+                     i=i+m-min(j,1+L(T[i])); //Đây là công thức cố định của thuật toán
+                     j=m-1;
+                }
+                else
+                {
+                    i=i+m;
+                    j=m-1;
+                }
+               // tim thay ket thuc chuong trinh
+            }
+            else
+            {
+                // neu chuỗi P và T (khoảng đang xét) không bằng nhau hoàn toàn chỉ có vài kí tự đầu bằng nhau ta thực hiện câu lệnh sau
+
+                while(true)
+                {
+                    i=i-1;
+                    j=j-1;
+                    if(T[i]!=P[j])
+                    {
+
+                        i=i+m-min(j,1+L(T[i]));
+                        j=m-1;
+                        break;
+                        // khi nào T[i] khác p[j] thì chuyển bước nhảy và thoát vòng lặp
+                    }
+                }
+            }
+        }
+        dem++; // đếm số bước nhảy
+    }
+    printf("tim thay %d lan\n",dem1);
+    printf("mat %d buoc de thuc hien\n",dem);
+}
+int main()
+{
+    nhapchuoi();
+    xuli();
+}
+
+
