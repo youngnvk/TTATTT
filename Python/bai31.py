@@ -3,10 +3,10 @@ import math
 def get_phan_so(maSinhVien):  # hàm lấy phần (số) của mã sinh viên AT190128 ->190128
     limit = len(maSinhVien)
     ma = 0
-    maSinhVien_reversed = maSinhVien[::-1]  # reverse the string
+    maSinhVien_reversed = maSinhVien[::-1]  
     for i in range(limit):
         if maSinhVien_reversed[i].isdigit():  # kiểm tra là số thì tính
-            ma += 10 ** i * int(maSinhVien_reversed[i])  # calculate the reversed number
+            ma += 10 ** i * int(maSinhVien_reversed[i])  
     return int(ma) #trả về dạng số
 
 def eratosthenes_segment(l, r):  # eratosthenes tạo mảng nguyên tố
@@ -70,6 +70,3 @@ if __name__ == '__main__':
     result = modulo(a, k, n)
     print(f"Kết quả của {a} ^ {k} mod {n} = {result}")
     
-    
-    
-

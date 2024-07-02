@@ -1,4 +1,6 @@
 import math
+
+import math
 def boyer(P, T):
     m = len(P)
     n = len(T)
@@ -22,12 +24,21 @@ def check_last_P(k, P): #hàm kiểm tra vị trí cuối cùng trong P
     for i in range(0, len(P)):
         if k == P[i]:
             vt = i #cứ chạy đến cuối sẽ ra vị trí đầu tiên
-    return vt   
+    return vt  
+def last_occurrence(k, P):
+    vt = -1
+    for i in range(0, len(P)):
+        if k == P[i]:
+            vt = i
+    return vt
+
 if __name__=='__main__':
-    S1 = "a pattern matching algorithm"
-    S2 = "rithm"
-    TEST = boyer(S2, S1)
-    if TEST == -1:
-        print('P không có trong T.')
+    vanban1 = input('Nhập chuỗi mẫu T: ')
+    vanban2 = input('Nhập chuỗi văn bản P: ')
+    result = boyer(vanban2, vanban1)
+    result2 = int(boyer(vanban2, vanban1))
+    if result != -1:
+        for pos in result:
+            print(pos)
     else:
-        print(f'P có trong T bắt đầu từ vị trí {TEST}.')  
+        print("")

@@ -8,7 +8,7 @@ def checknto(n):
             return False
     return True
 def random_array(n, l, r):
-    arr = [-1] * (n)
+    arr = [n]
     for i in range(n):
         a = random.randint(l, r)
         if a not in arr: #để cho các phần tử  trong mảng không giống nhau
